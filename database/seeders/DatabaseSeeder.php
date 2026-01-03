@@ -15,10 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@larto.app',
-            'password' => 'admin',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@larto.app'],
+            [
+                'name' => 'Admin',
+                'password' => bcrypt('admin'),
+            ]
+        );
     }
 }
